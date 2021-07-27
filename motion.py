@@ -96,6 +96,13 @@ def track(gui=False, **argv):
             if delta < 0.1:
                 time.sleep(0.1 - delta)
 
+            width = int(width/2)
+            height = int(height/2)
+            frame = cv2.resize(frame, (width,height))
+            gray = cv2.resize(gray, (width, height))
+            roi = cv2.resize(roi, (width, height))
+            can = cv2.resize(can, (width, height))
+
             cv2.imshow("Frame", cv2.pyrDown(frame))
             cv2.moveWindow("Frame", 0, 0)
             cv2.imshow("gray", cv2.pyrDown(gray))
@@ -114,5 +121,5 @@ def track(gui=False, **argv):
     cv2.destroyAllWindows()
 
 if __name__ == '__main__':
-    track()
+    track(gui=True)
 
